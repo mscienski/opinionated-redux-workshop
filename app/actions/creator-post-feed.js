@@ -1,9 +1,13 @@
 import jsonApiUrl from 'utils/json-api-url'
-import fetch from 'isomorphic-fetch'
-import { camelizeKeys } from 'humps'
 
-export const FETCH_CREATOR_POST_FEED_START = 'fetchCreator/POST_FEED_START';
-export const FETCH_CREATOR_POST_FEED_SUCCESS = 'fetchCreator/POST_FEED_SUCCESS';
+import { createActionsFromBaseAction } from 'utils/api-action';
+
+import createAPIAction from 'utils/api-action';
+
+export const FETCH_CREATOR_POST_FEED = 'fetchCreator/POST_FEED';
+
+export const FETCH_CREATOR_POST_FEED_ACTIONS =
+        createActionsFromBaseAction(FETCH_CREATOR_POST_FEED);
 
 const fetchCreatorPostFeedIncludes = ['user.null']
 const fetchCreatorPostFeedFields = {
@@ -21,6 +25,8 @@ const fetchCreatorPostFeedFields = {
     ]
 }
 
+const postFeedAPIAction = createAPIAction(FETCH_CREATOR_POST_FEED);
+
 export const fetchCreatorPostFeed = (creatorId) => {
     const url = jsonApiUrl('/stream', {
         'include': fetchCreatorPostFeedIncludes,
@@ -35,18 +41,5 @@ export const fetchCreatorPostFeed = (creatorId) => {
         }
     });
 
-    return dispatch => {
-        dispatch({
-            type: FETCH_CREATOR_POST_FEED_START
-        });
-
-        fetch(url)
-            .then(res => res.json()
-            ).then(json => {
-                dispatch({
-                    type: FETCH_CREATOR_POST_FEED_SUCCESS,
-                    posts: camelizeKeys(json.data)
-                });
-            });
-    };
+    return postFeedAPIAction(url);
 }
