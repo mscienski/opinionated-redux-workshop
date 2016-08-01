@@ -45,6 +45,38 @@ export default React.createClass({
         return isLoading ?
             <span>'Loading!'</span> :
             (<div style={postFeedStyle}>
+                <style dangerouslySetInnerHTML={{
+                    __html: `
+                        @keyframes text-cycler {
+                          0%, 100% {
+                            background-color: #e03fdf;
+                          }
+                          14% {
+                            background-color: #ef2f69;
+                          }
+                          28% {
+                            background-color: #e8a256;
+                          }
+                          43% {
+                            background-color: #e9dc56;
+                          }
+                          57% {
+                            background-color: #73eb5d;
+                          }
+                          71% {
+                            background-color: #65a9f6;
+                          }
+                          86% {
+                            background-color: #7a54f0;
+                          }
+                        }
+
+                        .post:hover {
+                            animation: text-cycler 0.5s infinite;
+                                       cursor: pointer;
+                        }
+                    `
+                }} />
                 { posts && posts.map(this.renderPost) }
             </div>)
     }
