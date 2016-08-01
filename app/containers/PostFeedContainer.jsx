@@ -1,17 +1,20 @@
 import { connect } from 'react-redux'
+import { fetchCreatorPostFeed } from 'actions/creator-post-feed';
 import PostFeed from 'components/PostFeed'
 
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: {postFeed: {isLoading, posts}}, ownProps) => {
     return {
-        // ??? fix me
-    }
-}
+        creatorId: ownProps.creatorId,
+        isLoading,
+        posts
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
         onMount: (creatorId) => {
-            // ??? fix me
+            dispatch(fetchCreatorPostFeed(creatorId));
         }
     }
 }

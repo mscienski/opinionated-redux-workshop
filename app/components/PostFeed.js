@@ -17,12 +17,17 @@ const postSpacerStyle = {
 /* component */
 export default React.createClass({
     propTypes: {
+        creatorId: PropTypes.string,
         posts: PropTypes.array,
         onMount: PropTypes.func
     },
 
+    defaultProps: {
+        posts: []
+    },
+
     componentDidMount() {
-        // ??? fix me
+        this.props.onMount(this.props.creatorId);
     },
 
     renderPost(post) {
@@ -35,7 +40,7 @@ export default React.createClass({
     },
 
     render() {
-        const { posts, isLoading } = this.props
+        const { posts, isLoading } = this.props;
 
         return isLoading ?
             'Loading!' :
