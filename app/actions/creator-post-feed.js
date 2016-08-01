@@ -41,8 +41,7 @@ export const fetchCreatorPostFeed = (creatorId) => {
         });
 
         fetch(url)
-            .then(res => res.json()
-            ).then(json => {
+            .then(res => res.json()).then(json => {
                 dispatch({
                     type: FETCH_CREATOR_POST_FEED_SUCCESS,
                     posts: camelizeKeys(json.data)
