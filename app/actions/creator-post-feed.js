@@ -45,7 +45,7 @@ export const fetchCreatorPostFeed = (creatorId) => {
             ).then(json => {
                 dispatch({
                     type: FETCH_CREATOR_POST_FEED_SUCCESS,
-                    posts: json.data
+                    posts: camelizeKeys(json.data)
                 });
             });
     };

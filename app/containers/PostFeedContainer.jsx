@@ -3,7 +3,7 @@ import { fetchCreatorPostFeed } from 'actions/creator-post-feed';
 import PostFeed from 'components/PostFeed'
 
 
-const mapStateToProps = (state: {postFeed: {isLoading, posts}}, ownProps) => {
+const mapStateToProps = ({postFeed: {isLoading, posts}}, ownProps) => {
     return {
         creatorId: ownProps.creatorId,
         isLoading,

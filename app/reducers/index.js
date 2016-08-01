@@ -17,7 +17,6 @@ export const postFeed = (state = initialState, action) => {
         }
 
         case FETCH_CREATOR_POST_FEED_SUCCESS: {
-            console.log(action);
             const newState = {
                 ...state,
                 isLoading: false,
