@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const postStyle = {
     backgroundColor: 'white',
     borderRadius: '50px',
@@ -36,7 +35,7 @@ export default class Post extends React.Component {
                     <marquee ref="marquee" style={h2Style}>{ post.attributes.title }</marquee>
                 </div>
                 {
-                    post.attributes.image ? <img src={post.attributes.image.url} style={imgStyle} /> : null
+                    post.attributes.image ? <img src={post.attributes.image.largeUrl} style={imgStyle} /> : null
                 }
                 {
                     post.attributes.content
